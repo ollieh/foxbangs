@@ -11,7 +11,7 @@ bangs = {
 
 var bangsLines = self.data.load("bangs.csv").split("\n");
 for each (let l in bangsLines) {
-    var bAndUrl = l.split(",");
+    var bAndUrl = l.split("\t");
     if (bAndUrl.length == 2) {
         var b = bAndUrl[0];
         var url = bAndUrl[1];
@@ -53,10 +53,8 @@ var myExtension = {
         var bang_match = query.match(bang_reg);
         var bang = bang_match ? bang_match[1] : null;
         if (bang && bangs[bang]) {
-            var trailing_plus_reg = /[^+]*(\+)/;
             var new_query = removeTrailingPlus(query.replace(bang,"").replace("++","+"));
             var new_url = bangs[bang].replace("{{{s}}}", new_query);
-            console.log(new_url);
             //aRequest.QueryInterface(Ci.nsIHttpChannel).redirectTo(Services.io.newURI(new_url, null, null));
             aRequest.cancel(Cr.NS_BINDING_ABORTED);
             var gBrowser = windowUtils.getMostRecentBrowserWindow().gBrowser;
