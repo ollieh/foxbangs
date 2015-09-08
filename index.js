@@ -9,7 +9,7 @@ const self = require("sdk/self");
 bangs = {
 };
 
-var bangsLines = self.data.load("bangs.csv").split("\n");
+var bangsLines = self.data.load("bangs.tsv").split("\n");
 for each (let l in bangsLines) {
     var bAndUrl = l.split("\t");
     if (bAndUrl.length == 2) {
